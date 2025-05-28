@@ -42,13 +42,14 @@ const OnboardingScreen = () => {
     const handleGetStarted = () => {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
         markOnboardingComplete();
-        router.replace('/');
+        router.replace('/signup');
+
     };
 
     const handleSkip = () => {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         markOnboardingComplete();
-        router.replace('/');
+        router.replace('/signup');
     };
 
     const beginTransition = () => {
