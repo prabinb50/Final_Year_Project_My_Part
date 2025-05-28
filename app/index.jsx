@@ -162,7 +162,7 @@ export default function Index() {
 
               {/* Sign Up Button */}
               <TouchableOpacity
-                onPress={handleSubmit}
+                onPress={() => router.push("/login")}
                 className="bg-green-500 py-4 rounded-full items-center justify-center w-7/12 mx-auto"
               >
                 <Text className="text-white text-lg font-semibold">Sign up</Text>
