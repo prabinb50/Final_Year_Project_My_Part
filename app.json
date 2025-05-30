@@ -11,7 +11,8 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "NSCameraUsageDescription": "BinHero needs access to your camera to scan and sort waste correctly."
+        "NSCameraUsageDescription": "BinHero needs access to your camera to scan and sort waste correctly.",
+        "NSLocationWhenInUseUsageDescription": "BinHero uses your location to show nearby dustbins and help you add new ones for others."
       }
     },
     "android": {
@@ -21,7 +22,9 @@
       },
       "edgeToEdgeEnabled": true,
       "permissions": [
-        "CAMERA"
+        "CAMERA",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
       ]
     },
     "web": {
@@ -44,6 +47,13 @@
         "expo-camera",
         {
           "cameraPermission": "BinHero needs access to your camera to scan and sort waste correctly."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "BinHero uses your location to show nearby dustbins and help you add new ones for others.",
+          "locationWhenInUsePermission": "BinHero uses your location to show nearby dustbins and help you add new ones for others."
         }
       ]
     ],

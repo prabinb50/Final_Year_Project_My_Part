@@ -1,10 +1,10 @@
 import { useRouter } from "expo-router";
 import { StatusBar } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import CameraPermissionScreen from "../../src/components/CameraPermissionScreen";
 import { useEffect, useState } from "react";
+import LocationPermissionScreen from "../../src/components/LocationPermissionScreen";
 
-const CameraPermission = () => {
+const LocationPermission = () => {
     const router = useRouter();
     const [isMounted, setIsMounted] = useState(true);
 
@@ -19,7 +19,7 @@ const CameraPermission = () => {
 
         if (granted) {
             // Navigate to the next screen after permission is granted
-            router.replace("/location-permission"); // Using replace to prevent back navigation to permission screen
+            router.replace("/home"); // Using replace to prevent back navigation to permission screen
         }
     };
 
@@ -27,7 +27,7 @@ const CameraPermission = () => {
         if (!isMounted) return;
 
         // Navigate without permission
-        router.replace("/location-permission"); // Using replace to prevent back navigation
+        router.replace("/home"); // Using replace to prevent back navigation
     };
 
     return (
@@ -37,7 +37,7 @@ const CameraPermission = () => {
                 backgroundColor="#FAF9F6"
             />
 
-            <CameraPermissionScreen
+            <LocationPermissionScreen
                 onPermissionGranted={handleAllowAccess}
                 onSkip={handleSkip}
             />
@@ -45,4 +45,4 @@ const CameraPermission = () => {
     );
 };
 
-export default CameraPermission;
+export default LocationPermission;

@@ -1,14 +1,14 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import { Camera } from 'expo-camera';
+import * as Location from 'expo-location';
 import { useState } from "react";
 
-const CameraPermissionScreen = ({ onPermissionGranted, onSkip }) => {
+const LocationPermissionScreen = ({ onPermissionGranted, onSkip }) => {
     const [hasPermission, setHasPermission] = useState(null);
 
-    // Function to request camera permission
-    const requestCameraPermission = async () => {
+    // Function to request location permission
+    const requestLocationPermission = async () => {
         try {
-            const { status } = await Camera.requestCameraPermissionsAsync();
+            const { status } = await Location.requestForegroundPermissionsAsync();
             const granted = status === 'granted';
             setHasPermission(granted);
 
@@ -17,7 +17,7 @@ const CameraPermissionScreen = ({ onPermissionGranted, onSkip }) => {
                 onPermissionGranted(granted);
             }
         } catch (error) {
-            console.log("Error requesting camera permission:", error);
+            console.log("Error requesting location permission:", error);
             if (onPermissionGranted) {
                 onPermissionGranted(false);
             }
@@ -33,10 +33,10 @@ const CameraPermissionScreen = ({ onPermissionGranted, onSkip }) => {
 
     return (
         <>
-            {/* Top Section with Camera Image */}
+            {/* Top Section with Map Image */}
             <View className="w-full h-[45%] items-center justify-center pt-20">
                 <Image
-                    source={require("../../assets/images/camera-icon.png")}
+                    source={require("../../assets/images/map.png")}
                     className="w-60 h-60"
                     resizeMode="contain"
                 />
@@ -55,18 +55,18 @@ const CameraPermissionScreen = ({ onPermissionGranted, onSkip }) => {
                     <Text
                         className="text-2xl font-bold text-white mb-4 pt-10"
                     >
-                        Allow camera access
+                        Allow location access
                     </Text>
 
                     <Text
                         className="text-base text-white leading-6"
                     >
-                        To help you scan and sort waste correctly, BinHero needs access to your camera.
+                        BinHero uses your location to show nearby dustbins and help you add new ones for others.
                     </Text>
 
                     {/* Allow Access Button */}
                     <TouchableOpacity
-                        onPress={requestCameraPermission}
+                        onPress={requestLocationPermission}
                         className="bg-white py-4 rounded-full items-center justify-center mb-7 mt-12"
                     >
                         <Text className="text-green-500 text-lg font-semibold">Allow Access</Text>
@@ -85,4 +85,4 @@ const CameraPermissionScreen = ({ onPermissionGranted, onSkip }) => {
     );
 };
 
-export default CameraPermissionScreen;
+export default LocationPermissionScreen;
