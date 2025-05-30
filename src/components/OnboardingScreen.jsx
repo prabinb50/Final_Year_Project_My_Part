@@ -230,6 +230,7 @@ const OnboardingScreen = () => {
                     className="w-full h-[100%] absolute top-0"
                 />
 
+
                 {/* Logo at the top of the screen with slide animation */}
                 <View className="w-full h-[45%] items-center justify-center pt-20">
                     <Animated.Image

@@ -144,10 +144,10 @@ const Login = () => {
 
                             {/* Login Button */}
                             <TouchableOpacity
-                                onPress={() => router.push("/")}
+                                onPress={() => router.push("/camera-permission")}
                                 className="bg-green-500 py-4 rounded-full items-center justify-center w-7/12 mx-auto"
                             >
-                                <Text className="text-white text-lg font-semibold">Sign in</Text>
+                                <Text className="text-white text-lg font-semibold">Login</Text>
                             </TouchableOpacity>
 
                             {/* Divider */}
