@@ -41,9 +41,11 @@ const SplashScreen = () => {
                 if (onboardingComplete === 'true') {
                     // Skip onboarding if already completed
                     router.replace('/');
+                    // router.replace("/signup);
                 } else {
                     // Show onboarding for first-time users
-                    router.replace('/(introduction)/onboarding');
+                    // router.replace('/(introduction)/onboarding');
+                    router.replace('/onboarding');
                 }
             }, 1000);
         } catch (error) {
