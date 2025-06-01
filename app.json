@@ -12,7 +12,8 @@
       "supportsTablet": true,
       "infoPlist": {
         "NSCameraUsageDescription": "BinHero needs access to your camera to scan and sort waste correctly.",
-        "NSLocationWhenInUseUsageDescription": "BinHero uses your location to show nearby dustbins and help you add new ones for others."
+        "NSLocationWhenInUseUsageDescription": "BinHero uses your location to show nearby dustbins and help you add new ones for others.",
+        "NSPhotoLibraryUsageDescription": "BinHero needs access to your photos to set your profile picture."
       }
     },
     "android": {
@@ -24,7 +25,9 @@
       "permissions": [
         "CAMERA",
         "ACCESS_FINE_LOCATION",
-        "ACCESS_COARSE_LOCATION"
+        "ACCESS_COARSE_LOCATION",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
       ]
     },
     "web": {
@@ -54,6 +57,12 @@
         {
           "locationAlwaysAndWhenInUsePermission": "BinHero uses your location to show nearby dustbins and help you add new ones for others.",
           "locationWhenInUsePermission": "BinHero uses your location to show nearby dustbins and help you add new ones for others."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "BinHero needs access to your photos to set your profile picture."
         }
       ]
     ],

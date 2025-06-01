@@ -19,7 +19,7 @@ const LocationPermission = () => {
 
         if (granted) {
             // Navigate to the next screen after permission is granted
-            router.replace("/home"); // Using replace to prevent back navigation to permission screen
+            router.replace("/profile-setup"); // Using replace to prevent back navigation to permission screen
         }
     };
 
@@ -27,7 +27,7 @@ const LocationPermission = () => {
         if (!isMounted) return;
 
         // Navigate without permission
-        router.replace("/home"); // Using replace to prevent back navigation
+        router.replace("/profile-setup"); // Using replace to prevent back navigation
     };
 
     return (
