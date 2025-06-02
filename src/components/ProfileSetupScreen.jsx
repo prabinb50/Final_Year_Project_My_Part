@@ -53,7 +53,7 @@ const ProfileSetupScreen = () => {
                     {profileImage ? (
                         <Image
                             source={{ uri: profileImage }}
-                            className="w-[200px] h-[200px] rounded-full"
+                            className="w-[100%] h-[100%] rounded-full"
                             resizeMode="cover"
                         />
                     ) : (
