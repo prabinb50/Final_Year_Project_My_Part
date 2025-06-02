@@ -40,7 +40,7 @@ const ProfileSetupScreen = () => {
     return (
         <SafeAreaView className="flex-1 bg-white">
             {/* Main Content */}
-            <View className="flex-1 px-8 pt-10 items-center">
+            <View className="flex-1 px-8 pt-20 items-center">
                 <Text className="text-2xl font-bold text-green-500 mb-4 text-center">
                     Let's Create Your Hero Identity!
                 </Text>
@@ -75,20 +75,22 @@ const ProfileSetupScreen = () => {
 
                 {/* Continue Button */}
                 <TouchableOpacity
-                    className="bg-green-600 py-4 px-5 rounded-full w-4/5 items-center mt-10"
+                    className="bg-green-500 py-4 px-3 rounded-full w-4/6 items-center mt-10"
                     onPress={handleContinue}
                 >
                     <Text className="text-white text-lg font-semibold">Continue</Text>
                 </TouchableOpacity>
             </View>
 
-    
+
             {/* Green Wave at Bottom */}
             <Image
-                source={require('../../assets/images/onboarding-rectangle.png')}
-                className="w-full h-[150px] absolute bottom-0"
-                resizeMode="stretch"
+                source={require('../../assets/images/profile-setup-rectangle.png')}
+                className="w-full absolute bottom-0"
+                style={{ height: 135 }}
+                resizeMode="cover"
             />
+
         </SafeAreaView>
     );
 };
