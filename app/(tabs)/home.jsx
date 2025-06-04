@@ -1,7 +1,6 @@
-import React from 'react';
-import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { MaterialIcons, Ionicons, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialIcons, Ionicons, FontAwesome, MaterialCommunityIcons, FontAwesome5, Entypo } from '@expo/vector-icons';
 
 const Home = () => {
     // Mock data for demonstration
@@ -16,7 +15,7 @@ const Home = () => {
             tue: true,
             wed: true,
             thu: true,
-            today: 15, // "Today" is labeled as "15"
+            today: 15,
             sat: 16,
         },
         coins: 1576,
@@ -124,7 +123,7 @@ const Home = () => {
             {/* Main Content in ScrollView */}
             <ScrollView className="flex-1 px-5" showsVerticalScrollIndicator={false}>
                 {/* Streak Section */}
-                <View className="bg-white rounded-xl p-4 mt-4 shadow-sm">
+                <View className="bg-white rounded-xl p-4 mt-4 shadow-lg">
                     <Text className="text-base font-bold mb-3">Your Streak</Text>
 
                     {/* Streak Days Row */}
@@ -182,33 +181,34 @@ const Home = () => {
                 </View>
 
                 {/* Today's Mission */}
-                <View className="bg-white rounded-xl p-4 mt-4 shadow-sm">
+                <View className="p-2 mt-5">
                     {/* Mission Header */}
                     <View className="flex-row justify-between items-center mb-3">
                         <Text className="text-base font-bold">Today's Mission</Text>
 
                         {/* Timer */}
                         <View className="flex-row items-center">
-                            <MaterialIcons name="timer" size={18} color="#FF9800" />
-                            <Text className="ml-1 text-yellow-600 font-bold">{todaysMission.timeRemaining}</Text>
+                            <MaterialIcons name="timer" size={18} color="#E2B100" />
+                            <Text className="ml-1 text-yellow-500 font-bold">{todaysMission.timeRemaining}</Text>
                         </View>
                     </View>
 
                     {/* Mission Card */}
-                    <View className="bg-yellow-50 rounded-lg p-4 flex-row">
+                    <View className="bg-yellow-50 rounded-lg p-4 flex-row ">
                         {/* Mission Icon */}
-                        <View className="w-10 h-10 rounded-full bg-green-100 items-center justify-center mr-3">
-                            <MaterialCommunityIcons name="recycle" size={24} color="#00A86B" />
+                        <View className="w-12 h-12 rounded-lg bg-green-100 items-center justify-center mr-3">
+                            <MaterialCommunityIcons name="recycle" size={24} color="#00A653" />
                         </View>
 
                         {/* Mission Details */}
                         <View className="flex-1">
-                            <Text className="font-bold mb-1">{todaysMission.title}</Text>
-                            <Text className="text-gray-700 text-xs mb-2">{todaysMission.description}</Text>
+                            <Text className="font-semibold mb-1">{todaysMission.title}</Text>
+                            <Text className="text-gray-600 text-sm mb-2">{todaysMission.description}</Text>
 
                             {/* Progress Indicator */}
                             <View className="mb-2">
-                                <Text className="text-xs mb-1">{todaysMission.progress}/{todaysMission.total}</Text>
+                                <Text className="text-sm mb-1 text-black">{todaysMission.progress}/{todaysMission.total}</Text>
+
                                 <View className="h-1.5 bg-gray-200 rounded-full">
                                     <View
                                         className="h-full bg-green-500 rounded-full"
@@ -218,11 +218,15 @@ const Home = () => {
                             </View>
 
                             {/* Rewards */}
-                            <View className="flex-row items-center">
-                                <Text className="text-gray-500 text-xs mr-2">Rewards:</Text>
+                            <View className="flex-row items-center justify-between">
                                 <View className="flex-row items-center">
-                                    <FontAwesome name="circle" size={16} color="#FFD700" />
-                                    <Text className="ml-1 font-bold text-xs">{todaysMission.reward}</Text>
+                                    <Entypo name="price-ribbon" size={18} color="#FFA600" />
+                                    <Text className="font-semibold text-sm  ml-1">Rewards:</Text>
+                                </View>
+
+                                <View className="flex-row items-center">
+                                    <FontAwesome5 name="coins" size={16} color="#FFA600" />
+                                    <Text className="ml-2 font-semibold text-sm">{todaysMission.reward}</Text>
                                 </View>
                             </View>
                         </View>
@@ -230,12 +234,12 @@ const Home = () => {
                 </View>
 
                 {/* Leaderboard Section */}
-                <View className="bg-white rounded-xl p-4 mt-4 shadow-sm">
+                <View className="bg-white rounded-xl p-4 mt-6 shadow-lg">
                     {/* Leaderboard Header */}
                     <View className="flex-row justify-between items-center mb-3">
                         <Text className="text-base font-bold">Leaderboard</Text>
                         <TouchableOpacity>
-                            <Text className="text-green-600 text-xs">See All</Text>
+                            <Text className="text-green-500 text-sm">See All</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -243,11 +247,12 @@ const Home = () => {
                     {leaderboard.map((item) => (
                         <View
                             key={item.rank}
-                            className={`flex-row items-center py-2 ${item.name === userData.username ? 'bg-green-50 rounded-lg px-2' : ''}`}
+                            // className={`flex-row items-center py-2 ${item.name === userData.username ? 'bg-green-50 rounded-lg' : ''}`}
+                            style={[styles.leaderboardItem, item.name === userData.username && styles.userRankHighlight]}
                         >
                             {/* Rank Circle */}
-                            <View className={`w-7 h-7 rounded-full items-center justify-center mr-2 ${getRankColor(item.rank)}`}>
-                                <Text className="text-white font-bold text-xs">{item.rank}</Text>
+                            <View className={`w-9 h-9 rounded-full items-center justify-center mr-2 ${getRankColor(item.rank)}`}>
+                                <Text className="opacity-90 font-bold text-xs">{item.rank}</Text>
                             </View>
 
                             {/* User Avatar */}
@@ -258,13 +263,13 @@ const Home = () => {
 
                             {/* User Info */}
                             <View className="flex-1">
-                                <Text className="font-bold text-sm">{item.name}</Text>
-                                <Text className="text-gray-500 text-xs">Level {item.level}</Text>
+                                <Text className="font-semibold text-sm">{item.name}</Text>
+                                <Text className="text-black text-xs">Level {item.level}</Text>
                             </View>
 
                             {/* Score */}
                             <View className="items-end">
-                                <Text className="font-bold">{item.score}</Text>
+                                <Text className="font-semibold">{item.score}</Text>
                                 <Text className={`text-xs ${item.change.includes('+') ? 'text-green-600' : 'text-red-500'}`}>
                                     {item.change}
                                 </Text>
@@ -274,7 +279,7 @@ const Home = () => {
                 </View>
 
                 {/* Recent Achievements */}
-                <View className="bg-white rounded-xl p-4 mt-4 mb-20 shadow-sm"> {/* mb-20 for bottom spacing */}
+                <View className="bg-white rounded-xl p-4 mt-6 mb-20 shadow-sm"> {/* mb-20 for bottom spacing */}
                     {/* Achievements Header */}
                     <View className="flex-row justify-between items-center mb-3">
                         <Text className="text-base font-bold">Recent Achievements</Text>
@@ -325,6 +330,7 @@ const DayCircle = ({ day, active, isToday, isNext, text }) => {
             <View className={`w-9 h-9 rounded-full ${bgColorClass} items-center justify-center mb-1`}>
                 <Text className={`text-sm font-bold ${textColorClass}`}>{text}</Text>
             </View>
+
             {/* Day label */}
             <Text className="text-xs text-gray-500">{day}</Text>
         </View>
@@ -334,11 +340,30 @@ const DayCircle = ({ day, active, isToday, isNext, text }) => {
 // Helper function to get rank color
 const getRankColor = (rank) => {
     switch (rank) {
-        case 1: return 'bg-yellow-500'; // Gold
-        case 2: return 'bg-gray-400';   // Silver
-        case 3: return 'bg-yellow-700'; // Bronze
-        default: return 'bg-green-400'; // Other ranks
+        case 1: return 'bg-orange-200';
+        case 2: return 'bg-gray-300';
+        case 3: return 'bg-gray-300';
+        default: return 'bg-green-300';
     }
 };
+
+const styles = StyleSheet.create({
+    leaderboardItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: 8,
+        borderBottomWidth: 1,
+        borderBottomColor: '#E5E7EB',
+        paddingLeft: 8,
+        paddingRight: 8,
+    },
+    userRankHighlight: {
+        backgroundColor: '#D9EBD7',
+        borderRadius: 8,
+        marginTop: 10,
+        paddingLeft: 8,
+        paddingRight: 8,
+    },
+});
 
 export default Home;
