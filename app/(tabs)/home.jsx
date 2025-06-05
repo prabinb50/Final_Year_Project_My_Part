@@ -2,6 +2,41 @@ import { View, Text, ScrollView, Image, TouchableOpacity, StyleSheet } from 'rea
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons, Ionicons, FontAwesome, MaterialCommunityIcons, FontAwesome5, Entypo } from '@expo/vector-icons';
 
+// Helper component for streak circles
+const DayCircle = ({ day, active, isToday, isNext, text }) => {
+    // Determine background color based on state
+    let bgColorClass = 'bg-gray-200'; // Default inactive
+    let textColorClass = 'text-green-500';
+
+    if (active || isToday) bgColorClass = 'bg-green-200';
+    if (isNext) bgColorClass = 'bg-green-200';
+
+    return (
+        <View className="items-center">
+            {/* Circle with day status */}
+            <View className={`w-9 h-9 rounded-full ${bgColorClass} items-center justify-center mb-1`}>
+                <Text className={`text-sm font-bold ${textColorClass}`}>
+                    {text != null ? String(text) : ''}
+                </Text>
+            </View>
+
+            {/* Day label */}
+            <Text className="text-xs text-gray-500">{day}</Text>
+        </View>
+    );
+};
+
+
+// Helper function to get rank color
+const getRankColor = (rank) => {
+    switch (rank) {
+        case 1: return 'bg-orange-200';
+        case 2: return 'bg-gray-300';
+        case 3: return 'bg-gray-300';
+        default: return 'bg-green-300';
+    }
+};
+
 const Home = () => {
     // Mock data for demonstration
     const userData = {
@@ -313,38 +348,6 @@ const Home = () => {
             </ScrollView>
         </SafeAreaView>
     );
-};
-
-// Helper component for streak circles
-const DayCircle = ({ day, active, isToday, isNext, text }) => {
-    // Determine background color based on state
-    let bgColorClass = 'bg-gray-200'; // Default inactive
-    let textColorClass = 'text-green-500';
-
-    if (active || isToday) bgColorClass = 'bg-green-200';
-    if (isNext) bgColorClass = 'bg-green-200';
-
-    return (
-        <View className="items-center">
-            {/* Circle with day status */}
-            <View className={`w-9 h-9 rounded-full ${bgColorClass} items-center justify-center mb-1`}>
-                <Text className={`text-sm font-bold ${textColorClass}`}>{text}</Text>
-            </View>
-
-            {/* Day label */}
-            <Text className="text-xs text-gray-500">{day}</Text>
-        </View>
-    );
-};
-
-// Helper function to get rank color
-const getRankColor = (rank) => {
-    switch (rank) {
-        case 1: return 'bg-orange-200';
-        case 2: return 'bg-gray-300';
-        case 3: return 'bg-gray-300';
-        default: return 'bg-green-300';
-    }
 };
 
 const styles = StyleSheet.create({
