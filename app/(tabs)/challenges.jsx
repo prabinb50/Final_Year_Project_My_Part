@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -51,9 +51,65 @@ const Challenges = () => {
 
     return (
         <SafeAreaView className="flex-1 bg-gray-100">
-            <ScrollView className="flex-1 px-5" showsVerticalScrollIndicator={false}>
+            {/* Header Section */}
+            <View>
+                <ImageBackground
+                    source={require('../../assets/images/home-header.png')}
+                    style={{ width: '100%', height: 212 }}
+                    resizeMode="cover"
+                    className=""
+                >
+                    {/* Contents overlaid on image */}
+                    <View className="absolute top-0 left-0 right-0 p-5">
+                        {/* Title and notifications row */}
+                        <View className="flex-row justify-between items-center">
+                            {/* Header Title */}
+                            <Text className="text-xl font-extrabold text-white">BINHERO</Text>
+
+                            {/* Coins and Notification  */}
+                            <View className="flex-row items-center justify-between gap-4">
+                                {/* Coins display */}
+                                <View className="flex-row items-center justify-between">
+                                    <FontAwesome5 name="coins" size={18} color="#FFA600" />
+
+                                    <Text className="text-white font-semibold ml-1 text-base">1,576</Text>
+                                </View>
+
+                                {/* Notification Bell */}
+                                <TouchableOpacity>
+                                    <Ionicons name="notifications" size={22} color="white" />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+
+                        {/* User Profile Section */}
+                        <View className="flex-row items-center mt-3">
+                            {/* User Avatar and name*/}
+                            <View className="flex-row items-center justify-between gap-2">
+                                {/* User Avator */}
+                                <Image
+                                    source={require('../../assets/images/user-avator.png')}
+                                    className="w-9 h-9 rounded-full"
+                                    resizeMode="cover"
+                                />
+
+                                {/* User Name */}
+                                <Text className="font-semibold text-sm text-white">Prabin Joshi</Text>
+                            </View>
+
+                            {/* User Details */}
+                            <View className="">
+                                <Text className="font-semibold text-sm text-white">Level 10</Text>
+                            </View>
+                        </View>
+                    </View>
+                </ImageBackground >
+            </View >
+
+            {/* Main Contents */}
+            < ScrollView className="flex-1 px-5" showsVerticalScrollIndicator={false} >
                 {/* Streak Section */}
-                <View className="bg-white rounded-xl p-4 mt-4 shadow-lg">
+                < View className="bg-white rounded-xl p-4 mt-4 shadow-lg" >
                     <Text className="font-bold text-base mb-3">Your Streak</Text>
 
                     {/* Streak Days */}
@@ -82,12 +138,12 @@ const Challenges = () => {
                             </View>
                         ))}
                     </View>
-                </View>
+                </View >
 
                 {/* Today's Mission Section */}
-                <View className="p-2 mt-5 shadow-lg">
+                < View className="p-2 mt-5 shadow-lg" >
                     {/* Mission Header */}
-                    <View className="flex-row justify-between items-center mb-3">
+                    < View className="flex-row justify-between items-center mb-3" >
                         <Text className="text-base font-bold">Today's Mission</Text>
 
                         {/* Timer */}
@@ -95,12 +151,12 @@ const Challenges = () => {
                             <Ionicons name="timer-outline" size={18} color="#E2B100" />
                             <Text className="ml-1 text-yellow-500 font-bold">03:25:55</Text>
                         </View>
-                    </View>
+                    </View >
 
                     {/* Mission Card */}
-                    <View className="rounded-xl overflow-hidden shadow-lg">
+                    < View className="rounded-xl overflow-hidden shadow-lg" >
                         {/* Gradient Background */}
-                        <LinearGradient colors={['#CEE8CD', '#FDE1B8']} start={{ x: 0, y: 1 }} end={{ x: 1, y: 2 }} className="p-4 ">
+                        < LinearGradient colors={['#CEE8CD', '#FDE1B8']} start={{ x: 0, y: 1 }} end={{ x: 1, y: 2 }} className="p-4 " >
                             <View className="flex-row items-center gap-2">
                                 {/* Mission Icon */}
                                 <View className="bg-green-200 rounded-lg mr-3 w-12 h-12 items-center justify-center">
@@ -140,64 +196,66 @@ const Challenges = () => {
                                     <Text className="font-semibold ml-2">200</Text>
                                 </View>
                             </View>
-                        </LinearGradient>
-                    </View>
+                        </LinearGradient >
+                    </View >
 
-                </View>
+                </View >
 
                 {/* Leaderboard Section */}
-                <View className="shadow-lg bg-white rounded-xl p-4 mt-4">
+                < View className="shadow-lg bg-white rounded-xl p-4 mt-4" >
                     {/* Leaderboard Header */}
-                    <View className="flex-row justify-between items-center mb-3">
+                    < View className="flex-row justify-between items-center mb-3" >
                         <Text className="text-base font-bold">Learboard</Text>
                         <Text className="text-base text-green-500">See All</Text>
-                    </View>
+                    </View >
 
                     {/* Leaderboard Items */}
-                    {leaderboard.map((item, index) => (
-                        <View key={index} className={`flex-row items-center justify-between mb-4 ${item.rank === 4 ? 'bg-green-100 rounded-lg px-1.5 py-2' : ''
-                            }`}>
-                            {/* Rank and User Info */}
-                            <View className="flex-row items-center gap-3">
-                                {/* Rank */}
-                                <View className="bg-gray-200 w-9 h-9 items-center justify-center rounded-full">
-                                    <Text className="text-orange-500 font-semibold">{item.rank}</Text>
-                                </View>
+                    {
+                        leaderboard.map((item, index) => (
+                            <View key={index} className={`flex-row items-center justify-between mb-4 ${item.rank === 4 ? 'bg-green-100 rounded-lg px-1.5 py-2' : ''
+                                }`}>
+                                {/* Rank and User Info */}
+                                <View className="flex-row items-center gap-3">
+                                    {/* Rank */}
+                                    <View className="bg-gray-200 w-9 h-9 items-center justify-center rounded-full">
+                                        <Text className="text-orange-500 font-semibold">{item.rank}</Text>
+                                    </View>
 
-                                {/* User Avatar */}
-                                <Image
-                                    source={require('../../assets/images/user-avator.png')}
-                                    className="w-9 h-9 rounded-full"
-                                    resizeMode="cover"
-                                />
-
-                                {/* User Info */}
-                                <View>
-                                    <Text className="font-semibold text-sm">{item.name}</Text>
-                                    <Text className="text-xs text-gray-500 font-semibold">Level {item.level}</Text>
-                                </View>
-                            </View>
-
-                            {/* Score and Change */}
-                            <View className="items-end">
-                                <Text className="font-semibold text-sm">{item.score.toLocaleString()}</Text>
-
-                                <View className="flex-row items-center">
-                                    <AntDesign
-                                        name={item.icon}
-                                        size={14}
-                                        color={item.icon === 'arrowup' ? '#1DAE63' : '#FF4C4C'}
+                                    {/* User Avatar */}
+                                    <Image
+                                        source={require('../../assets/images/user-avator.png')}
+                                        className="w-9 h-9 rounded-full"
+                                        resizeMode="cover"
                                     />
 
-                                    <Text
-                                        className="text-gray-500 text-xs font-semibold">
-                                        {item.change}
-                                    </Text>
+                                    {/* User Info */}
+                                    <View>
+                                        <Text className="font-semibold text-sm">{item.name}</Text>
+                                        <Text className="text-xs text-gray-500 font-semibold">Level {item.level}</Text>
+                                    </View>
+                                </View>
+
+                                {/* Score and Change */}
+                                <View className="items-end">
+                                    <Text className="font-semibold text-sm">{item.score.toLocaleString()}</Text>
+
+                                    <View className="flex-row items-center">
+                                        <AntDesign
+                                            name={item.icon}
+                                            size={14}
+                                            color={item.icon === 'arrowup' ? '#1DAE63' : '#FF4C4C'}
+                                        />
+
+                                        <Text
+                                            className="text-gray-500 text-xs font-semibold">
+                                            {item.change}
+                                        </Text>
+                                    </View>
                                 </View>
                             </View>
-                        </View>
-                    ))}
-                </View>
+                        ))
+                    }
+                </View >
 
                 {/* Recent Achievements Section */}
                 < View className="mt-5 p-2" >
@@ -208,31 +266,33 @@ const Challenges = () => {
                         <TouchableOpacity>
                             <Text className="text-green-500 text-base">View All</Text>
                         </TouchableOpacity>
-                    </View>
+                    </View >
 
                     {/* Achievements Row */}
-                    <View className="flex-row items-center justify-between gap-5">
-                        {achievements.map((achievement, index) => (
-                            <View key={index} className="shadow-lg bg-white items-center rounded-xl p-4">
-                                {/* Achievement Icon */}
-                                <View className="h-11 w-11 items-center justify-center mb-2 bg-orange-100 rounded-full">
-                                    <FontAwesome5 name={achievement.icon} size={20} color="#FFA600" />
-                                </View>
+                    < View className="flex-row items-center justify-between gap-5" >
+                        {
+                            achievements.map((achievement, index) => (
+                                <View key={index} className="shadow-lg bg-white items-center rounded-xl p-4">
+                                    {/* Achievement Icon */}
+                                    <View className="h-11 w-11 items-center justify-center mb-2 bg-orange-100 rounded-full">
+                                        <FontAwesome5 name={achievement.icon} size={20} color="#FFA600" />
+                                    </View>
 
-                                {/* Achievement Details */}
-                                <Text className="font-semibold text-sm">{achievement.title}</Text>
-                                <Text className="text-sm text-gray-500">{achievement.description}</Text>
+                                    {/* Achievement Details */}
+                                    <Text className="font-semibold text-sm">{achievement.title}</Text>
+                                    <Text className="text-sm text-gray-500">{achievement.description}</Text>
 
-                                {/* Reward */}
-                                <View className="flex-row mt-2 items-center">
-                                    <FontAwesome5 name="coins" size={15} color="#FFA600" />
-                                    <Text className="text-gray-500 ml-2 text-sm">+{achievement.reward}</Text>
+                                    {/* Reward */}
+                                    <View className="flex-row mt-2 items-center">
+                                        <FontAwesome5 name="coins" size={15} color="#FFA600" />
+                                        <Text className="text-gray-500 ml-2 text-sm">+{achievement.reward}</Text>
+                                    </View>
                                 </View>
-                            </View>
-                        ))}
-                    </View>
-                </View>
-            </ScrollView>
+                            ))
+                        }
+                    </View >
+                </View >
+            </ScrollView >
         </SafeAreaView >
     );
 };
