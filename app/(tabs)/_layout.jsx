@@ -1,5 +1,4 @@
 import { Tabs } from 'expo-router';
-import { TouchableOpacity } from 'react-native';
 import { Ionicons, MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 
 const TabLayout = () => {
@@ -39,17 +38,12 @@ const TabLayout = () => {
                 }}
             />
 
-            {/* Camera Tab (Special floating button) */}
+            {/* Camera Tab */}
             <Tabs.Screen name='camera'
                 options={{
                     title: "",
-                    tabBarButton: (props) => (
-                        <TouchableOpacity
-                            {...props}
-                            className="w-15 h-15 rounded-full bg-green-600 justify-center items-center -mt-5 shadow-lg"
-                        >
-                            <Ionicons name="scan" size={26} color="white" />
-                        </TouchableOpacity>
+                    tabBarIcon: ({ color }) => (
+                        <Ionicons name="scan-circle" size={42} color="#00A653" className="-mt-3 -ml-2" />
                     ),
                 }}
             />
