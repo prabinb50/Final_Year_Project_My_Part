@@ -8,7 +8,7 @@ const statsItems = [
         icon: 'recycle',
         value: '1241',
         label: 'Trash Disposed',
-        bgColor: 'bg-[#00A653]/15',
+        bgColor: 'bg-[#00A653]/25',
         iconColor: '#00A653'
     },
     {
@@ -16,7 +16,7 @@ const statsItems = [
         icon: 'coins',
         value: '5120',
         label: 'Points Earned',
-        bgColor: 'bg-[#FFA600]/15',
+        bgColor: 'bg-[#FFA600]/25',
         iconColor: '#FFA600'
     },
     {
@@ -24,7 +24,7 @@ const statsItems = [
         icon: 'trash',
         value: '5',
         label: 'Bins Added',
-        bgColor: 'bg-[#DB1923]/15',
+        bgColor: 'bg-[#DB1923]/25',
         iconColor: '#DB1923'
     }
 ];

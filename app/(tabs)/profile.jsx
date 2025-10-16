@@ -47,7 +47,7 @@ export default function Profile() {
                     </TouchableOpacity>
                 </View>
 
-                {/* tab content - conditional rendering */}
+                {/* tab content */}
                 {activeTab === 'stats' ? (
                     <>
                         <MyStats />

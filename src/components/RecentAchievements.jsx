@@ -17,7 +17,7 @@ const achievements = [
         icon: 'map-marked',
         reward: 500,
         color: '#00A653',
-        iconbgColor: 'bg-[#D9EBD7]'
+        iconbgColor: 'bg-[#00A653]/25'
     },
     {
         title: 'Recycle Buddy',

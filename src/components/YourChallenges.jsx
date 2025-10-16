@@ -5,7 +5,7 @@ const challenges = [
     {
         title: 'Scan & Dispose 3 Plastics',
         icon: 'recycle',
-        iconBgColor: 'bg-green-100',
+        iconBgColor: 'bg-[#00A653]/25',
         current: 1,
         total: 3,
         rewards: 100,
@@ -14,7 +14,7 @@ const challenges = [
     {
         title: 'Join 1 PvP Challenge',
         icon: 'trophy',
-        iconBgColor: 'bg-yellow-100',
+        iconBgColor: 'bg-[#FFCE29]/25',
         current: 0,
         total: 1,
         rewards: 50,
@@ -23,7 +23,7 @@ const challenges = [
     {
         title: 'Recycle 4 Organic Waste Once',
         icon: 'leaf',
-        iconBgColor: 'bg-green-100',
+        iconBgColor: 'bg-[#689F38]/25',
         current: 1,
         total: 4,
         rewards: 200,
