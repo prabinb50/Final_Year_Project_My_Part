@@ -1,7 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { View, Text } from 'react-native';
 
-// Stats details data for mapping
+// stats details data for mapping
 const statsDetails = [
     {
         id: 1,
@@ -30,9 +30,6 @@ const statsDetails = [
 ];
 
 export default function MyStats() {
-    // Progress percentage
-    const progressPercentage = 64;
-
     return (
         <View className="rounded-2xl mt-4 overflow-hidden">
             <LinearGradient
@@ -42,48 +39,16 @@ export default function MyStats() {
                 className="p-4"
             >
                 <Text className="font-semibold text-base mb-4">PvP Stats</Text>
-
-                <View className="flex-row">
-                    {/* Success rate circle */}
-                    <View className="mr-5">
-                        <View className="items-center justify-center w-28 h-28">
-                            {/* Background circle */}
-                            <View
-                                className="w-28 h-28 rounded-full border-8 border-gray-100 absolute"
-                            />
-                            {/* Progress circle - using conical gradient simulation with borders */}
-                            <View
-                                className="w-28 h-28 rounded-full border-8 border-[#00A653] absolute"
-                                style={{
-                                    borderTopColor: 'transparent',
-                                    borderRightColor: 'transparent',
-                                    borderLeftWidth: progressPercentage >= 50 ? 8 : 0,
-                                    transform: [
-                                        { rotateZ: `${progressPercentage * 3.6}deg` }
-                                    ]
-                                }}
-                            />
-                            {/* For progress > 50%, we need an additional element */}
-                            {progressPercentage > 50 && (
-                                <View
-                                    className="w-28 h-28 rounded-full border-8 absolute"
-                                    style={{
-                                        borderLeftColor: '#00A653',
-                                        borderBottomColor: '#00A653',
-                                        borderRightColor: 'transparent',
-                                        borderTopColor: 'transparent',
-                                        transform: [{ rotateZ: '0deg' }]
-                                    }}
-                                />
-                            )}
-                            <View className="absolute items-center">
-                                <Text className="text-2xl font-semibold">64%</Text>
-                                <Text className="text-xs text-gray-600">Success Rate</Text>
-                            </View>
+                {/* success rate container */}
+                <View className="flex-row gap-4">
+                    <View className="rounded-full border-[4px] border-[#BCCEBA] p-1 items-center justify-center">
+                        <View className="w-24 h-24 rounded-full border border-[#BCCEBA] items-center justify-center">
+                            <Text className="text-center text-2xl font-semibold">64%</Text>
+                            <Text className="text-center text-gray-600 text-xs">Success Rate</Text>
                         </View>
                     </View>
 
-                    {/* Stats details using grid layout */}
+                    {/* Stats details */}
                     <View className="flex-1">
                         <View className="flex-row flex-wrap">
                             {statsDetails.map((stat, index) => (
