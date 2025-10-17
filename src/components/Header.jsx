@@ -1,10 +1,11 @@
-import React from 'react';
 import { View, Text, ImageBackground, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 
-export default function Header({ title, image }) {
+export default function Header({ title, image, showSettings }) {
   const navigation = useNavigation();
+  const router = useRouter();
 
   return (
     <View>
@@ -22,6 +23,16 @@ export default function Header({ title, image }) {
           >
             <Ionicons name="arrow-back" size={24} color="white" />
           </TouchableOpacity>
+
+          {/* settings button - conditionally rendered */}
+          {showSettings && (
+            <TouchableOpacity
+              onPress={() => router.push("/settings")}
+              className="absolute bottom-15 right-10 bg-white/10 rounded-full p-2 mb-3"
+            >
+              <Ionicons name="settings-outline" size={24} color="white" />
+            </TouchableOpacity>
+          )}
 
           {/* header title */}
           <Text className="text-white text-2xl font-bold text-center mb-3">

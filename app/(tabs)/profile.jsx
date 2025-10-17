@@ -14,7 +14,7 @@ export default function Profile() {
         <SafeAreaView className="flex-1 bg-gray-100">
             {/* header */}
             <View>
-                <Header title="Profile" />
+                <Header title="Profile" showSettings={true}/>
             </View>
 
             {/* main contents */}
