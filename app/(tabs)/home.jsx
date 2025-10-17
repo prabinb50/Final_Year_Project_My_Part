@@ -8,6 +8,7 @@ import Leaderboard from '../../src/components/Leaderboard';
 import React from 'react'
 import RedeemablePoints from '../../src/components/RedeemablePoints';
 import RecentAchievements from '../../src/components/RecentAchievements';
+import { useRouter } from 'expo-router';
 
 // data for streak days
 const streakData = [
@@ -21,6 +22,8 @@ const streakData = [
 ];
 
 export default function Home() {
+    const router = useRouter();
+
     return (
         <SafeAreaView className="flex-1 bg-gray-100">
             {/* header section */}
@@ -47,7 +50,7 @@ export default function Home() {
                                 </View>
 
                                 {/* notification bell */}
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={() => router.push('/notifications')}>
                                     <Ionicons name="notifications" size={22} color="white" />
                                 </TouchableOpacity>
                             </View>
