@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Camera } from 'expo-camera';
 import PermissionScreen from "./PermissionScreen";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const CameraPermissionScreen = ({ onPermissionGranted, onSkip }) => {
     const [hasPermission, setHasPermission] = useState(null);
@@ -11,6 +12,9 @@ const CameraPermissionScreen = ({ onPermissionGranted, onSkip }) => {
             const { status } = await Camera.requestCameraPermissionsAsync();
             const granted = status === 'granted';
             setHasPermission(granted);
+            
+            // Store permission status for future reference
+            await AsyncStorage.setItem('cameraPermissionGranted', granted ? 'true' : 'false');
 
             // Call the callback with the permission result
             if (onPermissionGranted) {
@@ -18,6 +22,7 @@ const CameraPermissionScreen = ({ onPermissionGranted, onSkip }) => {
             }
         } catch (error) {
             console.log("Error requesting camera permission:", error);
+            await AsyncStorage.setItem('cameraPermissionGranted', 'false');
             if (onPermissionGranted) {
                 onPermissionGranted(false);
             }
@@ -25,7 +30,10 @@ const CameraPermissionScreen = ({ onPermissionGranted, onSkip }) => {
     };
 
     // Handle skip action
-    const handleSkipPress = () => {
+    const handleSkipPress = async () => {
+        // Store skipped status
+        await AsyncStorage.setItem('cameraPermissionGranted', 'false');
+        
         if (onSkip) {
             onSkip();
         }
