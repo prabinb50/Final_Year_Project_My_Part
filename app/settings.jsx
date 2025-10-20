@@ -37,7 +37,7 @@ export default function Settings() {
                     <TouchableOpacity className="flex-row items-center justify-between px-5 py-4 border-b border-gray-100">
                         <View className="flex-row items-center">
                             <FontAwesome name="user-circle-o" size={22} color="black" className="mr-3"/>
-                            <Text className="text-base font-semibold ml-2">Edit Profile</Text>
+                            <Text className="text-base font-medium text-gray-800 ml-2">Edit Profile</Text>
                         </View>
 
                         <Ionicons name="chevron-forward" size={20} color="gray" />
@@ -47,7 +47,7 @@ export default function Settings() {
                     <View className="flex-row items-center justify-between px-5 py-4 border-b border-gray-100">
                         <View className="flex-row items-center">
                             <MaterialIcons name="email" size={22} color="black" className="mr-3" />
-                            <Text className="text-base font-semibold ml-2">Email Address</Text>
+                            <Text className="text-base font-medium text-gray-800 ml-2">Email Address</Text>
                         </View>
                         <Text className="text-gray-400">prabin@gmail.com</Text>
                     </View>
@@ -56,7 +56,7 @@ export default function Settings() {
                     <TouchableOpacity className="flex-row items-center justify-between px-5 py-4 border-b border-gray-100">
                         <View className="flex-row items-center">
                             <FontAwesome name="lock" size={22} color="black" className="mr-3"/>
-                            <Text className="text-base font-semibold ml-2">Change Password</Text>
+                            <Text className="text-base font-medium text-gray-800 ml-2">Change Password</Text>
                         </View>
 
                         <Ionicons name="chevron-forward" size={20} color="gray" />
@@ -66,7 +66,7 @@ export default function Settings() {
                     <View className="flex-row items-center justify-between px-5 py-1 border-b border-gray-100">
                         <View className="flex-row items-center">
                             <Ionicons name="notifications" size={22} color="black" className="mr-3" />
-                            <Text className="text-base font-semibold ml-2">Notification</Text>
+                            <Text className="text-base font-medium text-gray-800 ml-2">Notification</Text>
                         </View>
 
                         <Switch
@@ -81,7 +81,7 @@ export default function Settings() {
                     <TouchableOpacity className="flex-row items-center justify-between px-5 py-4 border-b border-gray-100">
                         <View className="flex-row items-center">
                             <Ionicons name="language" size={22} color="black" className="mr-3" />
-                            <Text className="text-base font-semibold ml-2">Language</Text>
+                            <Text className="text-base font-medium text-gray-800 ml-2">Language</Text>
                         </View>
 
                         <Ionicons name="chevron-forward" size={20} color="gray" />
@@ -91,7 +91,7 @@ export default function Settings() {
                     <TouchableOpacity className="flex-row items-center justify-between px-5 py-4 border-b border-gray-100">
                         <View className="flex-row items-center">
                             <MaterialIcons name="privacy-tip" size={22} color="black" className="mr-3"/>
-                            <Text className="text-base font-semibold ml-2">Privacy Policy</Text>
+                            <Text className="text-base font-medium text-gray-800 ml-2">Privacy Policy</Text>
                         </View>
 
                         <Ionicons name="chevron-forward" size={20} color="gray" />
@@ -101,7 +101,7 @@ export default function Settings() {
                     <TouchableOpacity className="flex-row items-center justify-between px-5 py-4 border-b border-gray-100">
                         <View className="flex-row items-center">
                             <Ionicons name="help-circle" size={22} color="black" className="mr-3"/>
-                            <Text className="text-base font-semibold ml-2">Help</Text>
+                            <Text className="text-base font-medium text-gray-800 ml-2">Help</Text>
                         </View>
 
                         <Ionicons name="chevron-forward" size={20} color="gray" />
