@@ -7,10 +7,11 @@ export const detectWaste = async () => {
   const delay = Math.floor(Math.random() * 1000) + 1000;
   await new Promise(resolve => setTimeout(resolve, delay));
   
-  // Use only bio/non-bio waste types as specified
+  // Use only bio/non-bio waste types 
   const wasteTypes = ['Biodegradable', 'Non-Biodegradable'];
   const wasteType = wasteTypes[Math.floor(Math.random() * wasteTypes.length)];
   
+  // THIS IS THE KEY PART - COMPLETELY RANDOM BIN STATUS
   const binStatus = Math.random() > 0.5 ? 'Inside' : 'Outside';
   
   // Calculate points (5 if waste is inside bin)

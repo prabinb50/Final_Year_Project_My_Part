@@ -5,7 +5,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import TodayMission from '../../src/components/TodayMission';
 import Leaderboard from '../../src/components/Leaderboard';
-import React from 'react'
 import RedeemablePoints from '../../src/components/RedeemablePoints';
 import RecentAchievements from '../../src/components/RecentAchievements';
 import { useRouter } from 'expo-router';
