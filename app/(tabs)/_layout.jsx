@@ -45,6 +45,8 @@ const TabLayout = () => {
                     tabBarIcon: ({ color }) => (
                         <Ionicons name="scan-circle" size={42} color="#00A653" className="-mt-3 -ml-2" />
                     ),
+                    // hide the tab bar when camera screen is active
+                    tabBarStyle: { display: 'none' }
                 }}
             />
 
