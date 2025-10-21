@@ -11,11 +11,11 @@ export const detectWaste = async () => {
   const wasteTypes = ['Biodegradable', 'Non-Biodegradable'];
   const wasteType = wasteTypes[Math.floor(Math.random() * wasteTypes.length)];
   
-  // THIS IS THE KEY PART - COMPLETELY RANDOM BIN STATUS
+  // Random bin status (inside/outside)
   const binStatus = Math.random() > 0.5 ? 'Inside' : 'Outside';
   
-  // Calculate points (5 if waste is inside bin)
-  const points = binStatus === 'Inside' ? 5 : 0;
+  // awards 100 points for successful detection 
+  const points = binStatus === 'Inside' ? 100 : 0;
   
   return {
     wasteType,

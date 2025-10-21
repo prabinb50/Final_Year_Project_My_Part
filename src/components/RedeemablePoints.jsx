@@ -2,16 +2,20 @@ import { Text, TouchableOpacity, View } from 'react-native'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
+import { usePoints } from '../context/PointsProvider';
 
 export default function RedeemablePoints() {
     const router = useRouter();
+    const { points } = usePoints();  // Access dynamic points
 
     return (
-        <View className=" rounded-2xl overflow-hidden">
+        <View className="rounded-2xl overflow-hidden">
             <LinearGradient colors={['#CEE8CD', '#FDE1B8']} start={{ x: 0, y: 1 }} end={{ x: 1, y: 2 }} className="p-4">
                 <View className="flex-row justify-between items-center">
                     <View>
-                        <Text className="text-[#00A653] font-bold text-3xl">1,576</Text>
+                        <Text className="text-[#00A653] font-bold text-3xl">
+                            {points.toLocaleString()}  {/* Display dynamic points */}
+                        </Text>
                         <Text className="text-lg text-black">Redeemable Points</Text>
 
                         <View className="mt-2">

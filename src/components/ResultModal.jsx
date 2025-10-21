@@ -1,7 +1,25 @@
-import { View, Text, TouchableOpacity, Modal, Image } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { View, Text, TouchableOpacity, Modal } from 'react-native';
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
+import { usePoints } from '../context/PointsProvider';
 
 export default function ResultModal({ visible, result, onClose, onScanAgain }) {
+  const { addPoints } = usePoints();
+  const pointsAddedRef = useRef(false);
+
+  // Add points when a successful detection occurs - only once per result
+  useEffect(() => {
+    if (visible && result && result.success && !pointsAddedRef.current) {
+      addPoints(result.points);
+      pointsAddedRef.current = true;
+    }
+    
+    // Reset the ref when modal is closed
+    if (!visible) {
+      pointsAddedRef.current = false;
+    }
+  }, [visible, result, addPoints]);
+
   if (!result) return null;
 
   return (
@@ -38,18 +56,17 @@ export default function ResultModal({ visible, result, onClose, onScanAgain }) {
               <Text className="text-gray-600 font-medium">Waste Type:</Text>
               <Text className="font-semibold">{result.wasteType}</Text>
             </View>
-            
+
             <View className="flex-row justify-between items-center mb-3">
               <Text className="text-gray-600 font-medium">Bin Status:</Text>
-              <Text 
-                className={`font-semibold ${
-                  result.binStatus === 'Inside' ? 'text-[#00A653]' : 'text-red-500'
-                }`}
+              <Text
+                className={`font-semibold ${result.binStatus === 'Inside' ? 'text-[#00A653]' : 'text-red-500'
+                  }`}
               >
                 {result.binStatus}
               </Text>
             </View>
-            
+
             <View className="flex-row justify-between items-center">
               <Text className="text-gray-600 font-medium">Points Earned:</Text>
               <View className="flex-row items-center">
@@ -61,14 +78,14 @@ export default function ResultModal({ visible, result, onClose, onScanAgain }) {
 
           {/* Action buttons */}
           <View className="flex-row justify-between">
-            <TouchableOpacity 
+            <TouchableOpacity
               className="bg-gray-200 rounded-full py-3 px-6 flex-1 mr-2"
               onPress={onClose}
             >
               <Text className="text-center font-medium">Back to Home</Text>
             </TouchableOpacity>
-            
-            <TouchableOpacity 
+
+            <TouchableOpacity
               className="bg-[#00A653] rounded-full py-3 px-6 flex-1 ml-2"
               onPress={onScanAgain}
             >

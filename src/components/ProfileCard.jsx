@@ -1,36 +1,39 @@
 import { View, Text, Image } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
-
-// Stats summary data for mapping
-const statsItems = [
-    {
-        id: 1,
-        icon: 'recycle',
-        value: '1241',
-        label: 'Trash Disposed',
-        bgColor: 'bg-[#00A653]/25',
-        iconColor: '#00A653'
-    },
-    {
-        id: 2,
-        icon: 'coins',
-        value: '5120',
-        label: 'Points Earned',
-        bgColor: 'bg-[#FFA600]/25',
-        iconColor: '#FFA600'
-    },
-    {
-        id: 3,
-        icon: 'trash',
-        value: '5',
-        label: 'Bins Added',
-        bgColor: 'bg-[#DB1923]/25',
-        iconColor: '#DB1923'
-    }
-];
-
+import { usePoints } from '../context/PointsProvider';
 
 export default function ProfileCard() {
+    // Get dynamic points from context
+    const { points } = usePoints();
+    
+    // Stats summary data for mapping 
+    const statsItems = [
+        {
+            id: 1,
+            icon: 'recycle',
+            value: '1241',
+            label: 'Trash Disposed',
+            bgColor: 'bg-[#00A653]/25',
+            iconColor: '#00A653'
+        },
+        {
+            id: 2,
+            icon: 'coins',
+            value: points.toLocaleString(), // Dynamic points from context
+            label: 'Points Earned',
+            bgColor: 'bg-[#FFA600]/25',
+            iconColor: '#FFA600'
+        },
+        {
+            id: 3,
+            icon: 'trash',
+            value: '5',
+            label: 'Bins Added',
+            bgColor: 'bg-[#DB1923]/25',
+            iconColor: '#DB1923'
+        }
+    ];
+
     return (
         <View className="">
             {/* user info section */}

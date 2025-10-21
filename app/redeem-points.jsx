@@ -1,10 +1,11 @@
-import  { useState } from 'react';
-import { Text, View, Image, ScrollView, TouchableOpacity, Modal, Pressable } from 'react-native';
+import { useState } from 'react';
+import { Text, View, Image, ScrollView, TouchableOpacity, Modal, Pressable, Alert } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Header from '../src/components/Header';
 import { LinearGradient } from 'expo-linear-gradient';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { usePoints } from '../src/context/PointsProvider';
 
 const rewardItems = [
     {
@@ -54,12 +55,47 @@ const rewardItems = [
 ];
 
 export default function RedeemPoints() {
+    const { points, addPoints } = usePoints();
+
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedReward, setSelectedReward] = useState(null);
+    const [redeemSuccess, setRedeemSuccess] = useState(false);
 
     const openRedeemModal = (reward) => {
         setSelectedReward(reward);
         setModalVisible(true);
+    };
+
+    // Function to handle reward redemption
+    const handleRedeemReward = (reward) => {
+        // Check if user has enough points
+        if (points < reward.cost) {
+            Alert.alert(
+                "Insufficient Points",
+                `You need ${reward.cost - points} more points to redeem this reward.`,
+                [{ text: "OK" }]
+            );
+            return;
+        }
+
+        // Deduct points and process reward
+        addPoints(-reward.cost); // Use negative value to deduct points
+        
+        // Show success message
+        Alert.alert(
+            "Redemption Successful!",
+            `You've successfully redeemed ${reward.title}. ${reward.cost} points have been deducted from your account.`,
+            [
+                { 
+                    text: "OK", 
+                    onPress: () => {
+                        setModalVisible(false);
+                        setRedeemSuccess(true);
+                        setTimeout(() => setRedeemSuccess(false), 3000);
+                    } 
+                }
+            ]
+        );
     };
 
     return (
@@ -68,6 +104,15 @@ export default function RedeemPoints() {
             <View>
                 <Header title="Redeem Points" />
             </View>
+
+            {/* Redemption success notification */}
+            {redeemSuccess && (
+                <View className="absolute top-20 left-5 right-5 bg-[#00A653] p-3 rounded-lg z-10">
+                    <Text className="text-white text-center font-semibold">
+                        Reward redeemed successfully!
+                    </Text>
+                </View>
+            )}
 
             {/* main content */}
             <ScrollView className="flex-1 px-5" showsVerticalScrollIndicator={false}>
@@ -80,7 +125,7 @@ export default function RedeemPoints() {
 
                                 <View className="ml-5">
                                     <Text className="text-gray-600 text-base">Your Points</Text>
-                                    <Text className="text-[#00A653] font-bold text-3xl">1,576</Text>
+                                    <Text className="text-[#00A653] font-bold text-3xl">{points.toLocaleString()}</Text>
                                 </View>
                             </View>
 
@@ -114,8 +159,16 @@ export default function RedeemPoints() {
                                 className="flex-row items-center"
                                 onPress={() => openRedeemModal(item)}
                             >
-                                <Text className="text-[#00A653] text-sm underline">Redeem</Text>
-                                <MaterialIcons name="keyboard-arrow-right" size={20} color="#00A653" className="mt-0.5 -ml-0.5" />
+                                <Text className={`text-sm underline ${points >= item.cost ? 'text-[#00A653]' : 'text-gray-400'}`}>
+                                    Redeem
+                                </Text>
+
+                                <MaterialIcons 
+                                    name="keyboard-arrow-right" 
+                                    size={20} 
+                                    color={points >= item.cost ? "#00A653" : "#a0a0a0"} 
+                                    className="mt-0.5 -ml-0.5" 
+                                />
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -177,13 +230,17 @@ export default function RedeemPoints() {
                                 </TouchableOpacity>
 
                                 <TouchableOpacity
-                                    onPress={() => {
-                                        // handle redeem logic here in future
-                                        setModalVisible(false);
-                                    }}
-                                    className="bg-[#00A653] px-6 py-4 rounded-2xl w-[45%]"
+                                    onPress={() => handleRedeemReward(selectedReward)}
+                                    className={`px-6 py-4 rounded-2xl ${
+                                        points >= selectedReward.cost 
+                                            ? 'bg-[#00A653]' 
+                                            : 'bg-gray-400'
+                                    }`}
+                                    disabled={points < selectedReward.cost}
                                 >
-                                    <Text className="text-white text-center text-lg font-semibold">Redeem Now</Text>
+                                    <Text className="text-white text-center text-lg font-semibold">
+                                        {points >= selectedReward.cost ? 'Redeem Now' : 'Not Enough Points'}
+                                    </Text>
                                 </TouchableOpacity>
                             </View>
                         </Pressable>
