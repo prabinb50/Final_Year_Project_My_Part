@@ -69,7 +69,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const PointsContext = createContext();
 
-// Starting value changed to 0 (previously 1576)
+// Starting value set to zero
 const INITIAL_POINTS = 0;
 
 export function PointsProvider({ children }) {
